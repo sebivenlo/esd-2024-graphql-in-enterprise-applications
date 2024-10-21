@@ -2,7 +2,7 @@
 
 In the original resolver, code was fetching all the fields (id, name, email) from the database, even if the client only asked for one field.
 
-![Original Code](SimpleServerExample/orginal.png)
+![Original Code](./orginal.png)
 
 - Even when the client asked for only one field (e.g., just name), we would still fetch id, name, and email from the database.
   
@@ -12,7 +12,7 @@ In the original resolver, code was fetching all the fields (id, name, email) fro
 
 We refactored the code to dynamically build the query based on the fields that the client specifically requested. This way, only the necessary data is fetched from Cassandra, making the query more efficient.
 
-![Refactored Code](SimpleServerExample/optimazed.png)
+![Refactored Code](./optimazed.png)
 
 - Dynamic Field Selection: The requestedFields array is generated based on the fields that the client asks for in the query.
 - Optimized Query: Instead of hardcoding id, name, email in the query, we dynamically create the query string with only the requested fields, using fieldsToFetch.
