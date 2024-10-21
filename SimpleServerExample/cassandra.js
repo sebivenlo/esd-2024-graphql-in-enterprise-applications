@@ -2,9 +2,9 @@ const cassandra = require('cassandra-driver');
 
 // Creating a Cassandra client
 const client = new cassandra.Client({
-  contactPoints: ['127.0.0.1'],  // Use your Astra DB URL if using Astra in the cloud
-  localDataCenter: 'datacenter1', // Use the appropriate data center name
-  keyspace: 'mykeyspace'          // The name of your keyspace in Cassandra
+  contactPoints: ['127.0.0.1'],  
+  localDataCenter: 'datacenter1', 
+  keyspace: 'mykeyspace'          
 });
 
 // Connect to the Cassandra database
