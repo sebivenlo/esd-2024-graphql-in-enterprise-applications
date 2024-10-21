@@ -1,3 +1,56 @@
+Gives clients the power to ask for exactly what they need
+
+Example: Building social media app, and you only need to display the `username` and `profile picture` for a user.
+- With traditional API (like REST), if you ask for the user profile, you might get a lot of extra data you do not need, like their full name, email, address, etc.
+- But with GaphQL, you can specifically ask for just the `username`, and `profilePicture`.
+- Client chooses which fields to requests (`username` and `profilePicture`).
+
+```
+{
+  user(id: 1) {
+    username
+    profilePicture
+  }
+}
+```
+Server response: The server returns exactly what was asked for.
+
+```
+{
+  "data": {
+    "user": {
+      "username": "JohnDoe",
+      "profilePicture": "profile.jpg"
+    }
+  }
+}
+```
+With Rest example:
+
+The endpoint for user data is `GET/user/1` (for user with `id:1`)
+
+```
+GET /users/1
+```
+
+Response of the server:
+
+```
+{
+  "id": 1,
+  "username": "JohnDoe",
+  "fullName": "John Doe",
+  "email": "john@example.com",
+  "profilePicture": "profile.jpg",
+  "address": "123 Main Street",
+  "phoneNumber": "555-1234",
+  "birthDate": "1990-01-01"
+}
+
+```
+
+
+
 ### Quick remainder REST
 REST is a It is architectural style for distributed hypermedia systems, REST implies a series of constraints about how Server and Client should interact. 
 
@@ -46,6 +99,45 @@ Enterprises increasingly move from REST to GraphQL due to the flexibility and ef
 * Efficiency: By allowing clients to fetch only the needed data, it reduces server load and bandwidth use, making applications faster and more scalable.
 * Improved Developer Experience: Teams can work independently on the client and server sides, reducing the need for constant communication between them.
 * Flexibility Across Teams: As companies grow, GraphQL allows multiple teams to contribute to a unified API, without the rigid constraints of traditional APIs.
+
+
+Why Query Language:
+- Allows clients (like apps or websites) to query (ask for) specific data from server, just like a database query asks for specific information in the database.
+
+The key in the GraphQl lets the client define the structure of the response, meaning the client has full control of what data it gets back. This is why GraphQL is called query language for APIs.
+
+In GraphQL the client can ask for deeply nested fields or specific relationships between data. 
+
+For example, if the client wants a user's posts along with the comments for each posts
+
+```
+{
+  user(id: 1) {
+    username
+    posts {
+      title
+      comments {
+        content
+      }
+    }
+  }
+}
+```
+Instead of having to hit different REST endpoints like `/user` `/posts` `/comments`
+
+GraphQL query is written on the clien-side code, like app Swift or React:
+
+```
+// In a React app, this is a client-side GraphQL query
+const GET_USER_DATA = gql`
+  {
+    user(id: 1) {
+      name
+      profilePicture
+    }
+  }
+`;
+```
 
 
 
