@@ -107,6 +107,20 @@ mutation {
 }
 ```
 ## 1 way - Frontend - graphql - backend(rest) - database
+In this setup, GraphQL acts as a unifying API layer that aggregates or orchestrates data from multiple REST APIs and possibly other services.
+
+Use Case: This setup is useful when:
+
+- You’re working with existing REST APIs and don’t want to replace them.
+- Your application requires data from multiple services (e.g., microservices) and you want to provide a single API endpoint to the frontend.
+- You want to shield the frontend from any complex API calls by combining them into a single GraphQL query.
+Workflow:
+
+- Frontend sends a query to the GraphQL server.
+- The GraphQL server then communicates with various REST APIs (potentially using resolvers that call these APIs).
+- The REST APIs interact with the database as needed.
+- The GraphQL server aggregates the data from the REST responses and sends it back to the frontend.\
+Example: Suppose a Recipe Finder app requires data from a recipe API and a nutrition API. GraphQL queries can gather both recipes and nutritional info from different REST endpoints and deliver them as a unified response.
 ## 2 way - frontend - graphql - database
 ## single endpoint
 ## must be the specified type and not null(!)
