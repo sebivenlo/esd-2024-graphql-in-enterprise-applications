@@ -122,6 +122,24 @@ Workflow:
 - The GraphQL server aggregates the data from the REST responses and sends it back to the frontend.\
 Example: Suppose a Recipe Finder app requires data from a recipe API and a nutrition API. GraphQL queries can gather both recipes and nutritional info from different REST endpoints and deliver them as a unified response.
 ## 2 way - frontend - graphql - database
+In this setup, GraphQL acts as a direct API layer to the database, bypassing the REST API altogether.
+
+Use Case: This setup is effective when:
+
+- You’re building a new project without existing REST APIs.
+- You want to avoid an additional layer of REST calls for performance or simplicity.
+- The GraphQL server is configured with direct database access (using an ORM like Prisma for SQL or Mongoose for MongoDB).
+- The project can benefit from real-time data handling (GraphQL Subscriptions).\
+Workflow:
+1. Frontend sends a GraphQL query to the server.
+2. The GraphQL server executes resolvers that directly query or update the database.
+3. The server formats and sends the response back to the frontend.
+- Example: For a Recipe Finder app, GraphQL resolvers could directly interact with a MongoDB or PostgreSQL database to fetch or update recipe data.
+
+Choosing the Right Approach:\
+-Approach 1 (Frontend → GraphQL → REST) is ideal for integrating with existing REST services or where multiple services need to be combined into a single API.\
+-Approach 2 (Frontend → GraphQL → Database) works best for new projects or when streamlining architecture and reducing layers for direct data access.\
+Both setups are flexible and can even coexist within the same project, where some GraphQL resolvers fetch from REST APIs and others interact directly with a database. This flexibility allows GraphQL to serve as a powerful tool in modern application architectures.
 ## single endpoint
 ## must be the specified type and not null(!)
 ## Every graphQL needs a type Quesry whuich holds every query that you can make withall data that you can request. They not necesarely need a type. they can be a filter or code called input. 
