@@ -9,7 +9,17 @@ Here's how it works in the stack:
     - Databases (e.g., MongoDB, PostgreSQL, MySQL)
     - Other APIs (REST or SOAP APIs)
     - External services (like cloud services)
+
 ## No need to specify what kind of http request is sent
+When using GraphQL, you typically don’t need to specify different HTTP methods (like GET, POST, etc.) for different operations. Instead, GraphQL uses a single endpoint (e.g., /graphql) and often relies on POST requests for both queries and mutations.
+
+Here’s a typical request structure in GraphQL:
+
+1. Single Endpoint
+All requests—whether they’re queries, mutations, or subscriptions—are sent to a single endpoint, commonly /graphql.
+2. Request Body Structure
+For both queries and mutations, the client sends the request as a JSON payload in the HTTP body (when using POST).
+The JSON payload contains the query (or mutation) and optionally variables for dynamic values.
 ## get = query
 ## put,delete,post - mutation
 ## 1 way - Frontend - graphql - backend(rest) - database
