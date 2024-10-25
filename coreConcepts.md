@@ -140,7 +140,46 @@ Choosing the Right Approach:\
 -Approach 1 (Frontend → GraphQL → REST) is ideal for integrating with existing REST services or where multiple services need to be combined into a single API.\
 -Approach 2 (Frontend → GraphQL → Database) works best for new projects or when streamlining architecture and reducing layers for direct data access.\
 Both setups are flexible and can even coexist within the same project, where some GraphQL resolvers fetch from REST APIs and others interact directly with a database. This flexibility allows GraphQL to serve as a powerful tool in modern application architectures.
-## single endpoint
 ## must be the specified type and not null(!)
+Type Declaration with !: When you specify a type with an exclamation mark, such as String!, it means:\
+
+- The field cannot be null. It must always have a value.
+- If a null value is attempted, the server will throw an error instead of processing the request.\
+1. Examples of Non-Null Types:
+```
+type Recipe {
+  id: ID!              # id is required and must be non-null
+  title: String!       # title is required and must be non-null
+  description: String  # description is optional and can be null
+}
+
+type Query {
+  recipe(id: ID!): Recipe  # id is required as an argument in this query
+}
+```
+
+2. Common Use Cases:
+- Enforcing Required Fields: For fields like id, title, or createdAt, where values should always be present.
+- Input Validation: For input types in mutations (e.g., required fields in a createRecipe mutation).
+- Ensuring Consistency: In APIs where certain values should never be missing (like primary identifiers).\
+### Example in a Mutation
+Here’s a mutation with non-nullable inputs:
+```
+input RecipeInput {
+  title: String!        # title is required
+  description: String   # description is optional
+  ingredients: [String!]!  # ingredients list is required and cannot contain null items
+}
+
+type Mutation {
+  createRecipe(input: RecipeInput!): Recipe!
+}
+```
+In this example:
+- The *title* field inside *RecipeInput* is **required**.
+- *ingredients* must be a list that cannot contain any **null** elements (each *ingredient* is String!).
+- The *input* itself is **required** in *createRecipe*, meaning you can’t call this mutation without providing a *RecipeInput*.
+- The *createRecipe* mutation is expected to always return a *Recipe* object and never **null**.\
+By enforcing non-nullable fields, GraphQL improves data reliability and validation at the schema level.
 ## Every graphQL needs a type Quesry whuich holds every query that you can make withall data that you can request. They not necesarely need a type. they can be a filter or code called input. 
 ## when you have a type which is not basic graphql type, you need to specify the fields that you want.
