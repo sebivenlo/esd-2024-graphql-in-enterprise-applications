@@ -20,6 +20,40 @@ All requests—whether they’re queries, mutations, or subscriptions—are sent
 2. Request Body Structure
 For both queries and mutations, the client sends the request as a JSON payload in the HTTP body (when using POST).
 The JSON payload contains the query (or mutation) and optionally variables for dynamic values.
+
+### Example of a GraphQL Request
+Here’s how a GraphQL request might look for a query to fetch recipes:
+```
+POST /graphql
+Content-Type: application/json
+
+{
+  "query": "query { recipes { id title description } }"
+}
+```
+And for a mutation to add a new recipe:
+```
+POST /graphql
+Content-Type: application/json
+
+{
+  "query": "mutation ($input: RecipeInput!) { createRecipe(input: $input) { id title } }",
+  "variables": {
+    "input": {
+      "title": "New Recipe",
+      "description": "A delicious new recipe",
+      "ingredients": ["Ingredient1", "Ingredient2"]
+    }
+  }
+}
+```
+### Why No Need for Specific HTTP Methods?
+GraphQL’s single endpoint and query language make it more flexible than REST. You don’t need separate HTTP methods (GET, POST, PUT, DELETE) to indicate different types of operations because:
+
+- The operation type (query, mutation, or subscription) is specified within the GraphQL query syntax, not by the HTTP method.
+- GraphQL clients like Apollo or Relay handle these requests as POST by default, which simplifies things.\
+
+This setup also enables clients to be more precise, fetching only the data they need in a single request and keeping the API flexible.
 ## get = query
 ## put,delete,post - mutation
 ## 1 way - Frontend - graphql - backend(rest) - database
