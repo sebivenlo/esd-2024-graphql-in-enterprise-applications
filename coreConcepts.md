@@ -3,12 +3,12 @@ GraphQL itself is an API query language, not a database. It doesn’t store or m
 
 Here's how it works in the stack:
 
-Frontend sends a request to the GraphQL API.
-GraphQL Server receives the request, validates it against the schema, and then uses resolvers (custom functions) to retrieve or modify data.
-Resolvers fetch data from one or multiple data sources, such as:
-Databases (e.g., MongoDB, PostgreSQL, MySQL)
-Other APIs (REST or SOAP APIs)
-External services (like cloud services)
+1. Frontend sends a request to the GraphQL API.
+2. GraphQL Server receives the request, validates it against the schema, and then uses resolvers (custom functions) to retrieve or modify data.
+3. Resolvers fetch data from one or multiple data sources, such as:
+    - Databases (e.g., MongoDB, PostgreSQL, MySQL)
+    - Other APIs (REST or SOAP APIs)
+    - External services (like cloud services)
 ## No need to specify what kind of http request is sent
 ## get = query
 ## put,delete,post - mutation
