@@ -113,7 +113,7 @@ Use Case: This setup is useful when:
 
 - You’re working with existing REST APIs and don’t want to replace them.
 - Your application requires data from multiple services (e.g., microservices) and you want to provide a single API endpoint to the frontend.
-- You want to shield the frontend from any complex API calls by combining them into a single GraphQL query.
+- You want to shield the frontend from any complex API calls by combining them into a single GraphQL query.\
 Workflow:
 
 - Frontend sends a query to the GraphQL server.
