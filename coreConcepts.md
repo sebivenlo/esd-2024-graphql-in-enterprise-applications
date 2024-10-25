@@ -54,8 +54,58 @@ GraphQL’s single endpoint and query language make it more flexible than REST. 
 - GraphQL clients like Apollo or Relay handle these requests as POST by default, which simplifies things.\
 
 This setup also enables clients to be more precise, fetching only the data they need in a single request and keeping the API flexible.
+
 ## get = query
 ## put,delete,post - mutation
+In GraphQL, the operation types map conceptually to HTTP methods in this way:
+
+Query: Similar to GET in REST, used to fetch data. Queries do not modify data; they only retrieve it.
+Mutation: Equivalent to POST, PUT, or DELETE in REST, used to modify data. Mutations can create, update, or delete records.
+Here's a quick overview of each:
+
+1. Query (Similar to GET)
+Used to read or fetch data.
+Queries are idempotent, meaning they don’t change the state of the data on the server.
+Example Query:
+```
+query {
+  recipes {
+    id
+    title
+    description
+  }
+}
+```
+2. Mutation (Similar to POST, PUT, DELETE)
+- Used to perform actions that modify data, like adding, updating, or deleting records.
+- Mutations can have side effects, meaning they change the state of data on the server.\
+
+Example Mutation for Adding Data (similar to POST):
+```
+mutation {
+  createRecipe(input: { title: "Spaghetti", description: "A tasty pasta dish" }) {
+    id
+    title
+  }
+}
+```
+Example Mutation for Updating Data (similar to PUT):
+```
+mutation {
+  updateRecipe(id: "1", input: { title: "Updated Recipe" }) {
+    id
+    title
+  }
+}
+```
+Example Mutation for Deleting Data (similar to DELETE):
+```
+mutation {
+  deleteRecipe(id: "1") {
+    id
+  }
+}
+```
 ## 1 way - Frontend - graphql - backend(rest) - database
 ## 2 way - frontend - graphql - database
 ## single endpoint
