@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=Test Cluster
+      - CASSANDRA_NUM_TOKENS=256
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+    networks:
+      - workshop-network
+
+  graphql-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: graphql-server
+    ports:
+      - "4000:4000"
+    depends_on:
+      - cassandra
+    environment:
+      - CASSANDRA_CONTACT_POINTS=cassandra
+      - CASSANDRA_KEYSPACE=workshop
+      - NODE_ENV=production
+    networks:
+      - workshop-network
+
+networks:
+  workshop-network:
+    driver: bridge
