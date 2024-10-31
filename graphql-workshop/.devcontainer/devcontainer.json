@@ -1,0 +1,41 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+    "name": "Java with Cassandra",
+    "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
+
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {},
+        "ghcr.io/devcontainers-extra/features/maven-sdkman:2": {},
+        "ghcr.io/devcontainers-extra/features/springboot-sdkman:2": {}
+    },
+
+    // Forward ports to access the Spring Boot application and Cassandra
+    "forwardPorts": [8080, 9042], 
+
+    // Additional settings for connecting to Cassandra
+    "postCreateCommand": "docker-compose up -d",
+
+    // Configure VS Code-specific settings
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "pivotal.vscode-spring-boot",
+                "graphql.vscode-graphql"
+            ]
+        }
+    },
+
+    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+    // "remoteUser": "root",
+
+"mounts": [
+    "source=/Users/fattrain/.m2,target=/root/.m2,type=bind"
+]
+
+}
+

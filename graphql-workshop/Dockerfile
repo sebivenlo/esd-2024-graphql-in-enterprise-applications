@@ -1,20 +1,23 @@
-FROM openjdk:17-jdk-slim
-
-# Copy your application jar and the wait-for-it script
-COPY target/app.jar /app/app.jar
-COPY wait-for-it.sh /app/wait-for-it.sh
-
-# Run your application with the wait-for-it script
-ENTRYPOINT ["./wait-for-it.sh", "cassandra", "9042", "--", "java", "-jar", "app.jar"]
+# Use a valid Maven image with OpenJDK 17
+FROM maven:3.8-openjdk-17-slim AS build
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the .jar file into the container
-COPY target/graphql-workshop-0.0.1-SNAPSHOT.jar app.jar
+# Copy the Maven wrapper and pom.xml to download dependencies
+COPY .mvn .mvn
+COPY mvnw pom.xml ./
 
-# Expose the port your application runs on (optional, but typically 8080 for Spring Boot)
-EXPOSE 8080
+# Download dependencies
+RUN ./mvnw dependency:go-offline -B
 
-# Run the application
-CMD ["java", "-jar", "graphql-workshop-0.0.1-SNAPSHOT.jar"]
+# Copy the rest of the project files
+COPY . .
+
+# Package the application
+RUN ./mvnw clean package 
+
+# Use the OpenJDK image for running the application
+FROM openjdk:17-jdk-slim
+COPY --from=build /app/target/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]

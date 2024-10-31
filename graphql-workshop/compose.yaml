@@ -1,4 +1,4 @@
-version: '3.8'  # Specify the version of the docker-compose file format
+version: '3.8' 
 
 services:
   cassandra:
@@ -7,13 +7,13 @@ services:
     ports:
       - "9042:9042"
     environment:
-      CASSANDRA_KEYSPACE: your_keyspace_name  # Optional: Define a keyspace
+      CASSANDRA_KEYSPACE: your_keyspace_name
     networks:
       - app-network
 
   app:
     build:
-      context: .  
+      context: .
     container_name: graphql_app
     depends_on:
       - cassandra
