@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    networks:
+      - app-network
+    environment:
+      CASSANDRA_KEYSPACE: graphql_keyspace
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: graphql_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - cassandra
+    networks:
+      - app-network
+    environment:
+      SPRING_APPLICATION_NAME: graphql-workshop
+      SPRING_DATA_CASSANDRA_CONTACT_POINTS: cassandra
+      SPRING_DATA_CASSANDRA_PORT: 9042
+
+networks:
+  app-network:
+    driver: bridge

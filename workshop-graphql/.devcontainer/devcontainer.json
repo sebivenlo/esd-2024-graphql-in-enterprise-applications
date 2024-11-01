@@ -1,0 +1,28 @@
+{
+    "name": "Java with Cassandra",
+    "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {},
+        "ghcr.io/devcontainers-extra/features/maven-sdkman:2": {},
+        "ghcr.io/devcontainers-extra/features/springboot-sdkman:2": {},
+        "docker-in-docker": {
+            "version": "latest"
+        }
+    },
+    "forwardPorts": [8080, 9042],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "java.jdt.ls.java.home": "/usr/lib/jvm/msopenjdk-current"
+            },
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "pivotal.vscode-spring-boot",
+                "graphql.vscode-graphql"
+            ]
+        }
+    },
+    "mounts": [
+        "type=volume,source=maven_cache,target=/root/.m2"
+    ]
+}
