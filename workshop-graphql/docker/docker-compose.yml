@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    environment:
+      CASSANDRA_KEYSPACE: graphql_keyspace
+      CASSANDRA_CLUSTER_NAME: "TestCluster"
+    ports:
+      - "9042:9042"
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+      - ./cassandra-init.cql:/docker-entrypoint-initdb.d/init.cql
+
+  graphql_server:
+    image: node:14 # Change to your preferred GraphQL server image or custom image
+    container_name: graphql_server
+    working_dir: /usr/src/app
+    volumes:
+      - ./graphql:/usr/src/app
+    command: npm start
+    ports:
+      - "4000:4000"
+    depends_on:
+      - cassandra
+
+  spring_boot_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring_boot_app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_CASSANDRA_KEYSPACE_NAME=graphql_keyspace
+      - SPRING_DATA_CASSANDRA_CONTACT_POINTS=cassandra
+      - SPRING_GRAPHQL_ENDPOINT=http://graphql_server:4000
+    depends_on:
+      - cassandra
+      - graphql_server
+
+volumes:
+  cassandra_data:
