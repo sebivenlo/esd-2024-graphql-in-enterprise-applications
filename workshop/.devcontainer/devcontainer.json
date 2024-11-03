@@ -1,0 +1,19 @@
+{
+    "name": "Java Dev Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "settings": {
+        "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
+        "java.configuration.updateBuildConfiguration": "automatic"
+    },
+    "extensions": [
+        "vscjava.vscode-java-pack",       // Essential Java extension pack
+        "vscjava.vscode-java-test",       // Java test support
+        "vscjava.vscode-maven"            // Maven support for Java
+    ],
+    "postCreateCommand": "mvn clean install",  // Run a Maven build after container creation
+    "forwardPorts": [8080],                    // Forward port for any local servers (e.g., Spring Boot)
+    "remoteUser": "vscode"                     // Set the default user
+}
