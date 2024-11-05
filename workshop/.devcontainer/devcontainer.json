@@ -13,7 +13,8 @@
         "vscjava.vscode-java-test",       // Java test support
         "vscjava.vscode-maven",            // Maven support for Java
         "GraphQL.vscode-graphql",             // GraphQL: Language Features (autocomplete, etc.)
-        "GraphQL.vscode-graphql-syntax"       // GraphQL: Syntax Highlighting
+        "GraphQL.vscode-graphql-syntax",       // GraphQL: Syntax Highlighting
+        "mechatroner.rainbow-csv" // Rainbow CSV extension for CSV/TSV highlighting
     ],
     "postCreateCommand": "mvn clean install",  // Run a Maven build after container creation
     "forwardPorts": [8080],                    // Forward port for any local servers (e.g., Spring Boot)
