@@ -1,21 +1,21 @@
 
-# type Query {
-#   greeting: String
-#   customers: [Customer]
-# }
+type Query {
+  greeting: String
+  customers: [Customer]
+}
 
-# type Customer {
-#   id: ID
-#   homeStore: Store
-#   fName: String
-#   lName: String
-#   email: String
-#   customerSince: String
-#   LCNumber: Int
-#   bDay: String
-#   gender: String
-#   bDayYear: Int
-# }
+type Customer {
+  id: ID
+  homeStore: Int
+  fName: String
+  lName: String
+  email: String
+  customerSince: String
+  LCNumber: Int
+  bDay: String
+  gender: String
+  bDayYear: Int
+}
 
 # type Transaction {
 #   id: ID
