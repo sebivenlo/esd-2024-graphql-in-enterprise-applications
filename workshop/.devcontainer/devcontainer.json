@@ -7,8 +7,10 @@
     "customizations": {
         "vscode": {
             "settings": {
-                "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
-                "java.configuration.updateBuildConfiguration": "automatic"
+                "java.jdt.ls.java.home": "${env:JDK_HOME}",
+                "java.configuration.updateBuildConfiguration": "automatic",
+                "java.errors.incompleteClasspath.severity": "warning" // Ensures classpath errors are shown as warnings
+
             },
             "extensions": [
                 "vscjava.vscode-java-pack",               // Essential Java extension pack
