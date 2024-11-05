@@ -1,48 +1,49 @@
-type Query {
-  greeting: String
-  customers: [Customer]
-}
 
-type Customer {
-  id: ID
-  homeStore: Store
-  fName: String
-  lName: String
-  email: String
-  customerSince: String
-  LCNumber: Int
-  bDay: String
-  gender: String
-  bDayYear: Int
-}
+# type Query {
+#   greeting: String
+#   customers: [Customer]
+# }
 
-type Transaction {
-  id: ID
-  date: String
-  time: String
-  storeId: Store
-  staffId: Staff
-  inStore: Boolean
-  order: Int
-  lineItemId: Product
-}
+# type Customer {
+#   id: ID
+#   homeStore: Store
+#   fName: String
+#   lName: String
+#   email: String
+#   customerSince: String
+#   LCNumber: Int
+#   bDay: String
+#   gender: String
+#   bDayYear: Int
+# }
 
-type Store {
+# type Transaction {
+#   id: ID
+#   date: String
+#   time: String
+#   storeId: Store
+#   staffId: Staff
+#   inStore: Boolean
+#   order: Int
+#   lineItemId: Product
+# }
 
-}
+# type Store {
 
-type Staff {
+# }
 
-}
+# type Staff {
 
-type Product {
+# }
+
+# type Product {
    
-}
+# }
 
-Query GetCustomers{
-  customers{
-    id
-    fName
-    lName
-  }
-}
+# Query GetCustomers{
+#   customers{
+#     id
+#     fName
+#     lName
+#   }
+# }
