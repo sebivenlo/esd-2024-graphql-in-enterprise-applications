@@ -8,15 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class CustomerController {
+public class TransactionController {
 
     @QueryMapping
-    public List<Customer> customers() {
-        return Customer.customers;
-    }
-
-    @QueryMapping
-    public Optional<Customer> customerByID(@Argument Integer id) {
-        return Customer.getCustomerByID(id);
+    public List<Transaction> transactions() {
+        return Transaction.transactions;
     }
 }

@@ -2,6 +2,9 @@
 type Query {
   greeting: String
   customers: [Customer]
+  customerByID(id: Int): Customer 
+  transactions: [Transaction]
+  products: [Product]
 }
 
 type Customer {
@@ -17,16 +20,22 @@ type Customer {
   bDayYear: Int
 }
 
-# type Transaction {
-#   id: ID
-#   date: String
-#   time: String
-#   storeId: Store
-#   staffId: Staff
-#   inStore: Boolean
-#   order: Int
-#   lineItemId: Product
-# }
+type Transaction {
+  id: ID
+  date: String
+  time: String
+  storeId: Int
+  staffId: Int
+  customerId: Int
+  inStore: String
+  order: Int
+  lineItemId: Int
+  productId: Product
+  quantity: Int
+  lineItemAmount: Int
+  price: Int
+  promo: String
+}
 
 # type Store {
 
@@ -36,9 +45,13 @@ type Customer {
 
 # }
 
-# type Product {
-   
-# }
+type Product {
+   id: ID
+   group: String
+   category: String
+   productType: String
+   product: String
+}
 
 # Query GetCustomers{
 #   customers{
