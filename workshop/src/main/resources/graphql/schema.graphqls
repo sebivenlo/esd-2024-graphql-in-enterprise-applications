@@ -4,17 +4,18 @@ type Query {
   customers: [Customer]
   customerByID(id: Int): Customer 
   transactions: [Transaction]
+  transactionById(id: Int): Transaction
   products: [Product]
+  productById(id: Int!): Product
 }
 
 type Customer {
   id: ID
   homeStore: Int
-  fName: String
-  lName: String
+  name: String
   email: String
   customerSince: String
-  LCNumber: Int
+  LCNumber: String
   bDay: String
   gender: String
   bDayYear: Int
@@ -26,11 +27,11 @@ type Transaction {
   time: String
   storeId: Int
   staffId: Int
-  customerId: Int
+  customer: Customer
   inStore: String
   order: Int
   lineItemId: Int
-  productId: Product
+  product: Product
   quantity: Int
   lineItemAmount: Int
   price: Int

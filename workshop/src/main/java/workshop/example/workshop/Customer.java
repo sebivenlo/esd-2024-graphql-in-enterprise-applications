@@ -1,25 +1,57 @@
 package workshop.example.workshop;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public record Customer(Integer id,
                       Integer homeStore, 
-                      String fName, 
-                      String lName, 
+                      String name,
                       String email,
                       String customerSince,
-                      Integer  LCNumber,
+                      String  LCNumber,
                       String bDay,
                       String gender,
                       Integer bDayYear)
                       {
-    public static List<Customer> customers = Arrays.asList(
-    new Customer(1, 3, "Kelly", "Key", "email@gmail.co", "2017-01-04", 12345, "1950-05-29", "M", 1950),
-    new Customer(2, 3, "Kelly", "Key", "email@gmail.co", "2017-01-04", 12345, "1950-05-29", "M", 1950),
-    new Customer(3, 3, "Kelly", "Key", "email@gmail.co", "2017-01-04", 12345, "1950-05-29", "M", 1950)
-    );
+    private static List<Customer> getCustomersCSVFile() {
+            List<Customer> customers = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("/workspaces/esd-2024-graphql-in-enterprise-applications/workshop/src/main/resources/data/customer.csv"))) {
+            String line;
+            // Skip the header
+            br.readLine();
+
+            while ((line = br.readLine()) != null) {
+                // Split the line by commas, considering possible commas within quotes
+                String[] fields = line.split(",");
+                // Parse each field
+                int customerId = Integer.parseInt(fields[0]);
+                int homeStore = Integer.parseInt(fields[1]);
+                String name = fields[2];
+                String email = fields[3];
+                String customerSince = fields[4];
+                String loyaltyCardNumber =fields[5];
+                String birthdate = fields[6];
+                String gender = fields[7];
+                int birthYear = Integer.parseInt(fields[8]);
+
+                // Create a new Customer object and add it to the list
+                Customer customer = new Customer(customerId, homeStore,name , email, customerSince,
+                                                 loyaltyCardNumber, birthdate, gender, birthYear);
+                customers.add(customer);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return customers;
+        }
+        public static List<Customer> customers = getCustomersCSVFile();
 
     public static Optional<Customer> getCustomerByID(Integer id) {
     return customers.stream()

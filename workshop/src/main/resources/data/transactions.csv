@@ -1,3 +1,4 @@
+"transaction_id","transaction_date","transaction_time","sales_outlet_id","staff_id","customer_id","instore_yn","order","line_item_id","product_id","quantity","line_item_amount","unit_price","promo_item_yn"
 7,2019-04-01,12:04:43,3,12,558,N,1,1,52,1,2.50,2.50,N
 11,2019-04-01,15:54:39,3,17,781,N,1,1,27,2,7.00,3.50,N
 19,2019-04-01,14:34:59,3,17,788,Y,1,1,46,2,5.00,2.50,N

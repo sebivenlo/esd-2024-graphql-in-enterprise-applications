@@ -3,7 +3,7 @@ package workshop.example.workshop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -17,7 +17,7 @@ public record Transaction(Integer id,
                             String inStore,
                             Integer order,
                             Integer lineItemId,
-                            Integer productId,
+                            Integer product,
                             Integer quantity,
                             Double lineItemAmount,
                             Double price,
@@ -26,12 +26,19 @@ public record Transaction(Integer id,
                       {
     public static List<Transaction> transactions = readTransactionsFromCSV();
 
+    public static Optional<Transaction> getTransactionById(Integer id) {
+        return transactions.stream().filter(b -> b.id.equals(id)).findFirst();
+    }
+
     public static List<Transaction> readTransactionsFromCSV(){
         List<Transaction> transactionsCSVList = new ArrayList<>();
         String fileName = "/workspaces/esd-2024-graphql-in-enterprise-applications/workshop/src/main/resources/data/transactions.csv";
         File file = new File(fileName);
         try{
             Scanner inputStream = new Scanner(file);
+            if (inputStream.hasNextLine()) {
+                inputStream.nextLine();
+            }
             while (inputStream.hasNext()) {
                 String data = inputStream.next();
                 String[] values = data.split(",");
@@ -57,8 +64,6 @@ public record Transaction(Integer id,
             e.printStackTrace();
         }
         return transactionsCSVList;
-
-
     }
 
 }
