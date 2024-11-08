@@ -38,14 +38,6 @@ type Transaction {
   promo: String
 }
 
-# type Store {
-
-# }
-
-# type Staff {
-
-# }
-
 type Product {
    id: ID
    group: String
@@ -54,10 +46,10 @@ type Product {
    product: String
 }
 
-# Query GetCustomers{
-#   customers{
-#     id
-#     fName
-#     lName
-#   }
-# }
+type Mutation{
+  createCustomer(customer: CustomerInput): Customer
+}
+
+input CustomerInput{
+  id: ID!
+}

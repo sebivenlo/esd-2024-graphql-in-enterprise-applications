@@ -1,8 +1,10 @@
-package workshop.example.workshop;
+package workshop.example.workshop.controller;
 
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
+
+import workshop.example.workshop.model.Customer;
 
 import java.util.List;
 import java.util.Optional;
