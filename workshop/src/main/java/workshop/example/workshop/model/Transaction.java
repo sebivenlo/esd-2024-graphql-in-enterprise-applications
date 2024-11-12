@@ -26,5 +26,4 @@ public record Transaction(Integer id,
     public static Optional<Transaction> getTransactionById(Integer id) {
         return transactions.stream().filter(b -> b.id.equals(id)).findFirst();
     }
-
 }
