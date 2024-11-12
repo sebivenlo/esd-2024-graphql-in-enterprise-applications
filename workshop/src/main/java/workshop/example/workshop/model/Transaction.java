@@ -11,12 +11,8 @@ public record Transaction(Integer id,
                             Integer storeId,
                             Integer staffId,
                             Integer customerId,
-                            String inStore,
-                            Integer order,
-                            Integer lineItemId,
                             Integer product,
                             Integer quantity,
-                            Double lineItemAmount,
                             Double price,
                             String promo
                             )

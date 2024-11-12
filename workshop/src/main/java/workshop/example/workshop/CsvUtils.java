@@ -126,12 +126,8 @@ public class CsvUtils {
                     Integer.parseInt(values[3]), 
                     Integer.parseInt(values[4]), 
                     Integer.parseInt(values[5]), 
-                    values[6], 
-                    Integer.parseInt(values[7]), 
-                    Integer.parseInt(values[8]), 
                     Integer.parseInt(values[9]), 
-                    Integer.parseInt(values[10]), 
-                    Double.parseDouble(values[11]), 
+                    Integer.parseInt(values[10]),
                     Double.parseDouble(values[12]), 
                     values[13]));
             }
