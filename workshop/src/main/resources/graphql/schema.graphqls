@@ -47,9 +47,17 @@ type Product {
 }
 
 type Mutation{
-  createCustomer(customer: CustomerInput): Customer
+  createCustomer(input: CustomerInput): Customer
 }
 
 input CustomerInput{
   id: ID!
+  homeStore: Int!
+  name: String!
+  email: String!
+  customerSince: String!
+  LCNumber: String!
+  bDay: String!
+  gender: String
+  bDayYear: Int!
 }
