@@ -6,8 +6,5 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class GreetingResolver {
 
-    @QueryMapping
-    public String greeting() {
-        return "Hello, GraphQL!";
-    }
+    
 }
