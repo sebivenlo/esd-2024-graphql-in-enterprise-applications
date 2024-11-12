@@ -40,7 +40,6 @@ public record Customer(Integer id,
             writer.append("\n");
         // Write the entire line as a single entry
         writer.append(String.join(",", customerString));
-        writer.append("\n");
 
         System.out.println("Customer data appended to CSV file successfully.");
         } catch (IOException e) {
