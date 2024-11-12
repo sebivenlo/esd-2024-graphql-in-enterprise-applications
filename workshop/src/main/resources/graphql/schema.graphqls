@@ -10,40 +10,40 @@ type Query {
 }
 
 type Customer {
-  id: ID
+  id: ID!
   homeStore: Int
-  name: String
-  email: String
-  customerSince: String
+  name: String!
+  email: String!
+  customerSince: String!
   LCNumber: String
-  bDay: String
+  bDay: String!
   gender: String
-  bDayYear: Int
+  bDayYear: Int!
 }
 
 type Transaction {
-  id: ID
-  date: String
-  time: String
-  storeId: Int
-  staffId: Int
+  id: ID!
+  date: String!
+  time: String!
+  storeId: Int!
+  staffId: Int!
   customer: Customer
-  inStore: String
-  order: Int
-  lineItemId: Int
-  product: Product
-  quantity: Int
-  lineItemAmount: Int
-  price: Int
-  promo: String
+  inStore: String!
+  order: Int!
+  lineItemId: Int!
+  product: Product!
+  quantity: Int!
+  lineItemAmount: Int!
+  price: Int!
+  promo: String!
 }
 
 type Product {
-   id: ID
-   group: String
-   category: String
-   productType: String
-   product: String
+   id: ID!
+   group: String!
+   category: String!
+   productType: String!
+   product: String!
 }
 
 type Mutation{
