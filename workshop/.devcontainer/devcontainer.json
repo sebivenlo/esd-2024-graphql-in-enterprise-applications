@@ -4,16 +4,30 @@
         "dockerfile": "Dockerfile",
         "context": ".."
     },
-    "settings": {
-        "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
-        "java.configuration.updateBuildConfiguration": "automatic"
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "java.jdt.ls.java.home": "${env:JDK_HOME}",
+                "java.configuration.updateBuildConfiguration": "automatic",
+                "java.errors.incompleteClasspath.severity": "warning" // Ensures classpath errors are shown as warnings
+
+            },
+            "extensions": [
+                "vscjava.vscode-java-pack",               // Essential Java extension pack
+                "vscjava.vscode-java-test",               // Java test support
+                "vscjava.vscode-maven",                   // Maven support for Java
+                "GraphQL.vscode-graphql",                 // GraphQL: Language Features
+                "GraphQL.vscode-graphql-syntax",          // GraphQL: Syntax Highlighting
+                "mechatroner.rainbow-csv",                // Rainbow CSV extension for CSV/TSV highlighting
+                "Pivotal.vscode-spring-boot",             // Spring Boot Extension Pack
+                "vscjava.vscode-spring-boot",             // Spring Boot Tools for application properties
+                "vscjava.vscode-spring-boot-dashboard",   // Spring Boot Dashboard
+                "vscjava.vscode-spring-initializr"        // Spring Initializr Java Support
+            ]
+        }
     },
-    "extensions": [
-        "vscjava.vscode-java-pack",       // Essential Java extension pack
-        "vscjava.vscode-java-test",       // Java test support
-        "vscjava.vscode-maven"            // Maven support for Java
-    ],
-    "postCreateCommand": "mvn clean install",  // Run a Maven build after container creation
-    "forwardPorts": [8080],                    // Forward port for any local servers (e.g., Spring Boot)
-    "remoteUser": "vscode"                     // Set the default user
+    "postCreateCommand": "mvn clean install",      // Run a Maven build after container creation
+    "forwardPorts": [8080],                        // Forward port for any local servers (e.g., Spring Boot)
+    "remoteUser": "vscode"                         // Set the default user
 }
+
